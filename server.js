@@ -41,10 +41,13 @@ app.get("/api", (req, res, next) => {
 
 app.get("/api/:date_str", (req, res) => {
   let inp = req.params.date_str;
+  if (is_unix(inp)) {
+    inp = parseInt(inp);
+  }
   let x = new Date(inp);
   if (x.toString() === "Invalid Date") {
     res.json({
-      error: x.toString(),
+      error: "Invalid Date",
     });
   } else {
     res.json({
