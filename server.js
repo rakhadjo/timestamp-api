@@ -5,11 +5,6 @@
 var express = require("express");
 var app = express();
 
-function is_utc(date_inp) {
-  let utc_regex = /\d{4}-\d{2}-\d{2}/;
-  return utc_regex.test(date_inp);
-}
-
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 // so that your API is remotely testable by FCC
 var cors = require("cors");
@@ -26,13 +21,6 @@ app.get("/", function (req, res) {
 
 // basic current datetime
 app.get("/api", (req, res) => {
-  res.json({
-    unix: new Date().getTime(),
-    utc: new Date().toUTCString(),
-  });
-});
-
-app.get("/api", (req, res, next) => {
   res.json({
     unix: new Date().getTime(),
     utc: new Date().toUTCString(),
