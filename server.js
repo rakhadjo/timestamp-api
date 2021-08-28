@@ -32,6 +32,13 @@ app.get("/api", (req, res) => {
   });
 });
 
+app.get("/api", (req, res, next) => {
+  res.json({
+    unix: new Date().getTime(),
+    utc: new Date().toUTCString(),
+  });
+});
+
 app.get("/api/:date_str", (req, res) => {
   let inp = req.params.date_str;
   let x = new Date(inp);
